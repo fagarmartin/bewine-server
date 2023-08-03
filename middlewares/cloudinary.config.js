@@ -10,7 +10,7 @@ cloudinary.config({
 
 const storage = new CloudinaryStorage({
   cloudinary,
-  params: { allowed_formats: ["jpg", "png",".webp"], folder: "bewined" },
+  params: { allowed_formats: ["jpg", "png","webp"], folder: "bewined" },
 });
 
 module.exports = multer({ storage });
