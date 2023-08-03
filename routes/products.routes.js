@@ -9,7 +9,7 @@ router.get("/", async (req, res, next) => {
       name: 1,
       image: 1,
       price: 1,
-      tipo: 1,
+      category: 1,
     });
     res.json(response);
   } catch (error) {

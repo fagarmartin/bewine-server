@@ -1,4 +1,4 @@
-const { Schema, model } = require("mongoose");
+const { Schema, model, default: mongoose } = require("mongoose");
 
 const productSchema = new Schema({
   name: {
@@ -19,19 +19,28 @@ const productSchema = new Schema({
   price: {
     type: Number,
     required: true,
-  },
-  tipo: {
-    type: String,
-    enum: ["Tinto", "Blanco", "Rosado", "Palo Cortado", "Espumoso"],
-  },
-  bodega: {
+  }, 
+  category: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Category",
+    }
+  ],
+  platform: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Platform",
+    }
+  ],
+  company: {
     type: String,
     required: true,
   },
   stock: {
     type: Number,
     default: 1,
-  },
+  }
+  ,year: String
 });
 
 const Product = model("Product", productSchema);

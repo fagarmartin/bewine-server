@@ -6,16 +6,18 @@ const Product = require("../models/Product.model");
 
 router.post("/create", async (req, res, next) => {
   try {
-    const { name, description, price, tipo, bodega, stock, image } = req.body;
-
+    const { name, description, price, category, company, stock, image,platform,year } = req.body;
+    console.log(req.body,"REQ BODY")
     if (
       name === "" ||
       !description ||
       !price ||
-      !tipo ||
-      !bodega ||
+      !category ||
+      !company ||
       !stock ||
-      !image
+      !image ||
+      !platform ||
+      !year
     ) {
       res
         .status(400)
@@ -26,13 +28,15 @@ router.post("/create", async (req, res, next) => {
       name,
       description,
       price,
-      tipo,
-      bodega,
+      category,
+      company,
       stock,
       image,
+      platform,year
     });
     res.json("Documento creado");
   } catch (err) {
+    console.log(err)
     next(err);
   }
 });
@@ -40,9 +44,9 @@ router.post("/create", async (req, res, next) => {
 //PUT "/api/admin/:id" recoge datos de edición de producto y edita en la BD
 router.put("/:id", async (req, res, next) => {
   const { id } = req.params;
-  const { name, description, price, tipo, bodega, stock, image } = req.body;
+  const { name, description, price, category, company, stock, image,platform,year } = req.body;
 
-  if (!name || !description || !price || !tipo || !bodega || !stock || !image) {
+  if (!name || !description || !price || !category || !company || !stock || !image || !platform || !year) {
     res
       .status(400)
       .json({ errorMessage: "Todos los campos son obligatorios." });
@@ -52,7 +56,7 @@ router.put("/:id", async (req, res, next) => {
   try {
     const response = await Product.findByIdAndUpdate(
       id,
-      { name, description, price, tipo, bodega, stock, image },
+      { name, description, price, category, company, stock, image,platform,year },
       { new: true }
     );
     res.json("documento actualizado");

@@ -4,13 +4,14 @@ router.get("/", (req, res, next) => {
   res.json("All good in here");
 });
 router.use("/auth",require("./auth.routes"))
-router.use("/upload",require("./upload.routes")) //cloudinary
-router.use("/admin",require("./admin.routes")) //rutas administrador
-router.use("/cart",require("./cart.routes")) //rutas carrito compra
-router.use("/products",require("./products.routes")) //rutas carrito compra
-router.use("/wishlist", require("./wishList.routes")) // rutas de lista de deseos
-router.use("/historial", require("./historial.routes")) // ruta del historial de la compras
-router.use("/payment", require("./payment.routes"))// ruta de pasarela de pago
-router.use("/comentario", require("./comentario.routes")) // ruta comentarios
-
+router.use("/upload",require("./upload.routes")) //cloudinary route
+router.use("/admin",require("./admin.routes")) // administrator route
+router.use("/cart",require("./cart.routes")) //rcart route
+router.use("/products",require("./products.routes")) //products route
+router.use("/wishlist", require("./wishList.routes")) // wishlist route
+router.use("/historial", require("./historial.routes")) // historial purchase route
+router.use("/payment", require("./payment.routes"))// payment gateway route
+router.use("/comentario", require("./comentario.routes")) //  commments route
+router.use("/category", require("./category.routes")) // category route
+router.use("/platform", require("./platform.routes")) // platform route
 module.exports = router;
